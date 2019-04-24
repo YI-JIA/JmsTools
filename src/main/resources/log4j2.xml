@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="error" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Properties>
+		<Property name="PROJECT_NAME">jms</Property>
+	</Properties>
+	<appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd_HH:mm:ss,SSS} %-5p %t [%c{1}.%M():%L] - %m%n" />
+		</Console>
+		<RollingFile name="FILE" fileName="log/${PROJECT_NAME}.log"
+			filePattern="log/$${date:yyyy-MM}/${PROJECT_NAME}-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd_HH:mm:ss,SSS} %-5p %t [%c{1}.%M():%L] - %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+				<OnStartupTriggeringPolicy />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+		</RollingFile>
+	</appenders>
+	<loggers>
+		<root level="debug">
+			<appender-ref ref="FILE" />
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</loggers>
+</configuration> 
